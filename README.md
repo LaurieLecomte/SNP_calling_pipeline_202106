@@ -17,7 +17,7 @@ This pipeline features 4 main steps, SNP calling, merging and filtering.
 
 The SNP calling step uses `bcftools mpileup` on 60 bam files, one for each individual (see [Raw Data](https://github.com/LaurieLecomte/SNP_calling_pipeline_202106#raw-data) below). For the sake of efficiency, this step has been parallelized by chromosome, e.g. SNPs were called across **all** samples at once on **1 chromosome at the time**, which yields 1 VCF file per chromosome.
 
-All chromosomes’ VCFs were then merged together in a single VCF file, which was then filtered.
+All chromosomes' VCFs were then merged together in a single VCF file, which was then filtered.
 
 
 ## Prerequisites
@@ -25,9 +25,9 @@ All chromosomes’ VCFs were then merged together in a single VCF file, which was 
 ### Files 
 
 * A **reference genome** (`.fasta`) and its **index** (`.fai`) in `00_genome`
-* **Bam files** for all samples and their index. These can be located somewhere on the server or soft-linked in a folder in the pipeline directory, such as `00_bam_files` or `00_sequences` for instance. If $BAM_PATH is the path to bam files : `for file in $(ls -1 $BAM_PATH/*); do ln -s $file ./00_sequences; done`
+* **Bam files** for all samples and their index. These can be located somewhere on the server or soft-linked in a folder in the pipeline directory, such as `00_bam_files` or `00_sequences` for instance. If `$BAM_PATH` is the remote path to bam files : `for file in $(ls -1 $BAM_PATH/*); do ln -s $file ./00_sequences; done`
 * A **bam files list** in `02_infos`. This list can be generated with the following command, where `$BAM_DIR` is the path of the directory where bam files are located : `ls -1 $BAM_DIR/*.bam > 02_infos/bam_list.txt
-* A **chromosomes list** (or contigs, or sites) in `02_infos`. This list is used for parallelizing the SNP calling step. It can be produced from the indexed genome file (“$GENOME”.fai) : `less "$GENOME".fai | cut -f1 > 02_infos/chr_list.txt`
+* A **chromosomes list** (or contigs, or sites) in `02_infos`. This list is used for parallelizing the SNP calling step. It can be produced from the indexed genome file ("$GENOME".fai) : `less "$GENOME".fai | cut -f1 > 02_infos/chr_list.txt`
 * Optional : a list of samples IDs and their population (and/or sex) for popgen analysis, such as PCA or FST calculation, in `02_infos`. 
 
 ### Software Requirements
