@@ -8,7 +8,7 @@ The output VCF has been used by Clare Venney and al. in an upcoming publication 
 
 Scripts were adapted from previous work done by Clément Rougeux, Claire Mérot and Florent Sylvestre.
 
-For an upgraded version of this pipeline, see SNP_calling_pipeline repository (in prep). 
+For an upgraded version of this pipeline, see [SNP_calling_pipeline_202205 repository](https://github.com/LaurieLecomte/SNP_calling_pipeline_202205). 
 
 
 ## Pipeline Overview
